@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
-// import { Container } from './styles';
+import { Container } from "./styles";
 
 export default function Editor() {
+  const [value, setValue] = useState("");
+
   return (
-    <>
-      <h1>Editor</h1>
-    </>
+    <Container>
+      <textarea
+        type="text"
+        name="note"
+        id="note"
+        onChange={e => {
+          setValue(e.target.value);
+        }}
+      />
+      <ReactMarkdown source={value} />
+    </Container>
   );
 }
