@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const Container = styled.div`
   display: flex;
   padding: 10px;
-  height: calc(100% - 80px);
+  height: calc(100% - 45px);
 
   p {
     padding: 8px;
@@ -52,32 +53,20 @@ export const Container = styled.div`
 export const ResultPane = styled.div`
   display: flex;
   position: fixed;
-  height: calc(100% - 50px);
-  right: 0;
-  left: 50%;
-  bottom: 0;
+  height: calc(100% - 80px);
   overflow: auto;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 20px;
   color: #444;
-  line-height: 1.5em;
+  line-height: 1.6em;
 `;
 
 export const Form = styled.div`
-  display: flex;
-  position: fixed;
-  top: 57px;
-  left: 0;
-  bottom: 0;
-  width: 50%;
   height: 100%;
-  overflow: auto;
-  box-shadow: -10px 2px 6px 10px rgba(0, 0, 0, 0.4);
 
   textarea {
-    padding: 20px;
     height: 100%;
     width: 100%;
+    padding: 20px;
     border: none;
     overflow: auto;
     outline: none;
@@ -88,3 +77,61 @@ export const Form = styled.div`
     resize: none;
   }
 `;
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex"
+  },
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  hide: {
+    display: "none"
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    width: drawerWidth
+  },
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end"
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginLeft: -drawerWidth
+  },
+  contentShift: {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginLeft: 0
+  }
+}));
