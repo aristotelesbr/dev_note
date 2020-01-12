@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown/with-html";
 
-import { Container } from "./styles";
+import { Container, ResultPane, Form } from "./styles";
 
 export default function Editor() {
-  const [value, setValue] = useState("");
+  const [draft, setDraft] = useState("");
+
+  function handleChange(event) {
+    setDraft(event.target.value);
+  }
 
   return (
     <Container>
-      <textarea
-        type="text"
-        name="note"
-        id="note"
-        onChange={e => {
-          setValue(e.target.value);
-        }}
-      />
-      <ReactMarkdown source={value} />
+      <Form>
+        <textarea
+          type="text"
+          name="editor"
+          className="editor"
+          onChange={e => handleChange(e)}
+          value={draft}
+        />
+      </Form>
+
+      <ResultPane>
+        <ReactMarkdown
+          className="result"
+          source={draft}
+          escapeHtml={false}
+          sourcePos={true}
+        />
+      </ResultPane>
     </Container>
   );
 }
