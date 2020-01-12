@@ -36,7 +36,6 @@ export default function FileSystemNavigator() {
         <Button
           variant="contained"
           color="primary"
-          classes={{ "align-self": "flex-end" }}
           startIcon={<BookOutlinedIcon />}
         >
           Criar Caderno
